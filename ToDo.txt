@@ -1,0 +1,49 @@
+-  Slides
+    photo
+    Messages
+    button_text
+
+-  About
+        vision, vision_photo, mission, mission_photo
+        - Team
+            name, photo, biography, position
+
+-  Contact
+        address, phone number, email
+        - Contact Messages
+
+-  youtubes
+        Youtube Video, title
+
+-  Gallery
+    photo, event_id(nullable)
+
+-  Events
+        name, date, cover_photo, content
+
+-  Event Bookings
+    event_id, name, email
+
+-  Stores
+        name, cover_photo, price, description
+
+- Givings
+    - Giving Mode(Debit Card, Credit Card, Transfer)
+    - Giving Option(Partnership, Tithe & Offering, Donations)
+
+    //amount, giving_mode_id, giving_option_id
+
+    - Bank Accounts
+        country_id, bank, name, number, 
+
+    - Giving Accounts
+        bank_account_id, giving_option_id
+
+- Subscribers
+    email
+
+-  users
+        name, email, password
+
+-  Memberships
+        firstname, surname, country, email
