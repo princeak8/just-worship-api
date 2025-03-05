@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\BaseRequest;
 
-class AddTeamMember extends BaseRequest
+class UpdateTeamMember extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +23,10 @@ class AddTeamMember extends BaseRequest
     public function rules(): array
     {
         return [
-            "name" => "required|string",
-            "photo" => "required|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
+            "name" => "nullable|string",
+            "photo" => "nullable|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
             "biography" => "nullable|string",
-            "position" => "required|string"
+            "position" => "nullable|string"
         ];
     }
 }

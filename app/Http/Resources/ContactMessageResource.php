@@ -17,7 +17,8 @@ class ContactMessageResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
-            "message" => $this->message
+            "message" => $this->message,
+            "read" => ($this->read == 1) ? true : false
         ];
     }
 }

@@ -21,8 +21,19 @@ class ContactMessageService
         return ContactMessage::all();
     }
 
+    public function unreadMessages()
+    {
+        return ContactMessage::where("read", 0)->get();
+    }
+
     public function message($id)
     {
-        return ContactMessage::find($id);
+        $message = ContactMessage::find($id);
+        if($message && $message->read == 0) {
+            $message->read = true;
+            $message->update();
+        }
+
+        return $message;
     }
 }

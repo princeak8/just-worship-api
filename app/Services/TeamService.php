@@ -39,4 +39,9 @@ class TeamService
     {
         return Team::find($id);
     }
+
+    public function delete($member)
+    {
+        $member->delete();
+    }
 }

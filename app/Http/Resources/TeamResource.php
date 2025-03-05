@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+use App\Http\Resources\FileResource;
+
 class TeamResource extends JsonResource
 {
     /**
@@ -18,7 +20,7 @@ class TeamResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
-            "photo" => Storage::url($this->photo),
+            "photo" => new FileResource($this->photo),
             "position" => $this->position,
             "biography" => $this->biography
         ];
