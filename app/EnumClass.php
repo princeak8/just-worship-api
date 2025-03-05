@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Enums\FileType;
+use App\Enums\Role;
 
 class EnumClass
 {
@@ -17,6 +18,14 @@ class EnumClass
             FileType::PDF->value,
             FileType::VIDEO->value,
             FileType::XLS->value
+        ];
+    }
+
+    public static function roles()
+    {
+        return [
+            Role::ADMIN->value,
+            Role::SUPER_ADMIN->value
         ];
     }
 

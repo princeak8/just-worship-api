@@ -16,6 +16,8 @@ class UserAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if(Auth::check()) return $next($request);
+        
         return response()->json(["error" => "unauthorized"], 401);
     }
 }

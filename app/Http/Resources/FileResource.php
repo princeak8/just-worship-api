@@ -3,12 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-use App\Http\Resources\FileResource;
-
-class SlideResource extends JsonResource
+class FileResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,9 +16,11 @@ class SlideResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "photo" => new FileResource($this->photo),
-            "message" => $this->message,
-            "buttonText" => $this->button_text
+            "url" => url($this->url),
+            "mimeType" => $this->mime_type,
+            "filename" => $this->filename,
+            "extension" => $this->extension,
+            "size" => $this->size,
         ];
     }
 }
