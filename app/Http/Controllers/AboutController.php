@@ -11,6 +11,8 @@ use App\Http\Resources\AboutResource;
 use App\Services\AboutService;
 use App\Services\FileService;
 
+use App\Utilities;
+
 class AboutController extends Controller
 {
     private $aboutService;
@@ -32,7 +34,7 @@ class AboutController extends Controller
         $oldVisionPhoto = null;
 
         if($request->hasFile('missionPhoto')) {
-             if($about->missionPhoto) $oldMissionPhoto = $about->missionPhoto;
+             if($about && $about->missionPhoto) $oldMissionPhoto = $about->missionPhoto;
             $fileData = [
                 "file" => $request->file('missionPhoto'),
                 "fileType" => 'image'
@@ -42,7 +44,7 @@ class AboutController extends Controller
         }
 
         if($request->hasFile('visionPhoto')) {
-            if($about->visionPhoto) $oldVisionPhoto = $about->visionPhoto;
+            if($about && $about->visionPhoto) $oldVisionPhoto = $about->visionPhoto;
            $fileData = [
                "file" => $request->file('visionPhoto'),
                "fileType" => 'image'
@@ -62,6 +64,8 @@ class AboutController extends Controller
     public function about()
     {
         $about = $this->aboutService->about();
+
+        if(!$about) return Utilities::ok(null);
 
         return Utilities::ok(new AboutResource($about));
     }
