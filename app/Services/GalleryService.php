@@ -4,13 +4,14 @@ namespace App\Services;
 
 use App\Models\Gallery;
 
-class GalleyService
+class GalleryService
 {
     public function save($data)
     {
         $gallery = new Gallery;
         $gallery->photo_id = $data['photoId'];
         if(isset($data['eventId'])) $gallery->event_id = $data['eventId'];
+        if(isset($data['title'])) $gallery->title = $data['title'];
         $gallery->save();
 
         return $gallery;
@@ -20,6 +21,7 @@ class GalleyService
     {
         if(isset($data['photoId'])) $gallery->photo_id = $data['photoId'];
         if(isset($data['eventId'])) $gallery->event_id = $data['eventId'];
+        if(isset($data['title'])) $gallery->title = $data['title'];
         $gallery->update();
 
         return $gallery;
@@ -33,5 +35,10 @@ class GalleyService
     public function galleryPhoto($id)
     {
         return Gallery::find($id);
+    }
+
+    public function delete($gallery)
+    {
+        $gallery->delete();
     }
 }

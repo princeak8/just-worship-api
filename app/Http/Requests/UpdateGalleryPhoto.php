@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\BaseRequest;
 
-class AddGalleryPhotos extends BaseRequest
+class UpdateGalleryPhoto extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class AddGalleryPhotos extends BaseRequest
     public function rules(): array
     {
         return [
-            "photo" => "required|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
+            "photo" => "nullable|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
             "eventId" => "nullable|integer|exists:events,id",
             "title" => "nullable|string"
         ];

@@ -12,8 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('gallery', function (Blueprint $table) {
+            $table->id();
             $table->foreignId("photo_id");
             $table->foreignId("event_id")->nullable();
+            $table->string("title")->nullable();
+            $table->timestamps();
         });
     }
 

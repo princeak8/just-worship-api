@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 use App\Http\Resources\EventResource;
+use App\Http\Resources\FileResource;
 
 class GalleryResource extends JsonResource
 {
@@ -19,7 +20,8 @@ class GalleryResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "photo" => Storage::url($this->photo),
+            "photo" => new FileResource($this->photo),
+            "title" => $this->title,
             "event" => new EventResource($this->event)
         ];
     }

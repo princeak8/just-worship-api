@@ -22,4 +22,14 @@ class YoutubeService
     {
         return Youtube::first();
     }
+
+    public function youtubeVids()
+    {
+        return Youtube::all();
+    }
+
+    public function delete($youtube)
+    {
+        $youtube->delete();
+    }
 }
