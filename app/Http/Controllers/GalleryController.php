@@ -33,7 +33,7 @@ class GalleryController extends Controller
             "file" => $request->file('photo'),
             "fileType" => 'image'
         ];
-        $file = $this->fileService->save($fileData, 'slides');
+        $file = $this->fileService->save($fileData, 'gallery');
         $data['photoId'] = $file->id;
 
         $galleryPhoto = $this->galleryService->save($data);
@@ -41,7 +41,7 @@ class GalleryController extends Controller
         return Utilities::ok(new GalleryResource($galleryPhoto));
     }
 
-    public function update($id, AddGalleryPhotos $request)
+    public function update($id, UpdateGalleryPhoto $request)
     {
         if (!is_numeric($id) || !ctype_digit($id)) return Utilities::error402("Invalid parameter id");
 

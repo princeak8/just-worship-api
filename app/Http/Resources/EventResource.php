@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+use App\Http\Resources\EventBookingResource;
+
+use App\Http\Resources\FileResource;
+
 class EventResource extends JsonResource
 {
     /**
@@ -19,8 +23,9 @@ class EventResource extends JsonResource
             "id" => $this->id,
             "name" => $this->name,
             "date" => $this->event_date,
-            "coverPhoto" => Storage::url($this->cover_photo),
-            "content" => $this->content
+            "coverPhoto" => new FileResource($this->coverPhoto),
+            "content" => $this->content,
+            "bookings" => EventBookingResource::collection($this->bookings)
         ];
     }
 }

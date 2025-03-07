@@ -38,4 +38,9 @@ class StoreService
     {
         return Store::find($id);
     }
+
+    public function delete($item)
+    {
+        $item->delete();
+    }
 }

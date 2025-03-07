@@ -32,7 +32,7 @@ class TeamController extends Controller
             "file" => $request->file('photo'),
             "fileType" => 'image'
         ];
-        $file = $this->fileService->save($fileData, 'slides');
+        $file = $this->fileService->save($fileData, 'team');
         $data['photoId'] = $file->id;
 
         $member = $this->teamService->save($data);
@@ -63,7 +63,7 @@ class TeamController extends Controller
                "file" => $request->file('photo'),
                "fileType" => 'image'
            ];
-           $file = $this->fileService->save($fileData, 'about');
+           $file = $this->fileService->save($fileData, 'team');
            $data['photoId'] = $file->id;
        }
 

@@ -13,6 +13,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\YoutubeController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\StoreController;
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
@@ -53,6 +55,17 @@ Route::group(["prefix" => "gallery"], function() {
     Route::get("/{id}", [GalleryController::class, "galleryPhoto"]);
 });
 
+Route::group(["prefix" => "events"], function() {
+    Route::get("", [EventController::class, "events"]);
+    Route::get("/{id}", [EventController::class, "event"]);
+    Route::post("/book", [EventController::class, "book"]);
+});
+
+Route::group(["prefix" => "store"], function() {
+    Route::get("", [StoreController::class, "store"]);
+    Route::get("/{id}", [StoreController::class, "storeItem"]);
+});
+
 //Protected Routes
 Route::middleware(UserAuth::class)->group(function () {
     Route::group(["prefix" => "slides"], function() {
@@ -88,6 +101,18 @@ Route::middleware(UserAuth::class)->group(function () {
         Route::post("add_photo", [GalleryController::class, "save"]);
         Route::post("update_photo/{id}", [GalleryController::class, "update"]);
         Route::delete("delete_photo/{id}", [GalleryController::class, "deleteGalleryPhoto"]);
+    });
+
+    Route::group(["prefix" => "events"], function() {
+        Route::post("", [EventController::class, "save"]);
+        Route::post("/{id}", [EventController::class, "update"]);
+        Route::delete("/{id}", [EventController::class, "delete"]);
+    });
+
+    Route::group(["prefix" => "store"], function() {
+        Route::post("", [StoreController::class, "addToStore"]);
+        Route::post("/{id}", [StoreController::class, "editItem"]);
+        Route::delete("/{id}", [StoreController::class, "deleteItem"]);
     });
 });
 

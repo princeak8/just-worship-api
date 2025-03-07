@@ -22,8 +22,8 @@ class Gallery extends Model
     {
         parent::boot();
 
-        self::deleting(function (Slide $slide) {
-            if($slide->photo) $slide->photo->delete();
+        self::deleting(function (Gallery $gallery) {
+            if($gallery->photo) $gallery->photo->delete();
         });
     }
 }

@@ -20,7 +20,7 @@ class EventBookingResource extends JsonResource
             "id" => $this->id,
             "name" => $this->name,
             "email" => $this->email,
-            "event" => new EventResource($this->event)
+            "event" => new EventResource($this->whenLoaded('event'))
         ];
     }
 }

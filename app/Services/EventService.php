@@ -41,6 +41,11 @@ class EventService
         return Event::with($with)->where("id", $id)->first();
     }
 
+    public function delete($event)
+    {
+        $event->delete();
+    }
+
     public function book($data)
     {
         $eventBook = new EventBooking;
