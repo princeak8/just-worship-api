@@ -19,7 +19,7 @@ class GivingOptionResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
-            "accounts" => BankAccountResource::collection("accounts")
+            "accounts" => BankAccountResource::collection($this->accounts)
         ];
     }
 }

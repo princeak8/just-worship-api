@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('bank_accounts', function (Blueprint $table) {
             $table->id();
             $table->foreignId("country_id");
+            $table->string("currency")->default("naira");
             $table->string("bank");
             $table->string("name");
             $table->string("number");

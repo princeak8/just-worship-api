@@ -15,6 +15,11 @@ use App\Http\Controllers\YoutubeController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\GivingController;
+use App\Http\Controllers\BankAccountController;
+use App\Http\Controllers\OnlineAccountController;
+
+use App\Http\Controllers\UtilityController;
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
@@ -66,6 +71,24 @@ Route::group(["prefix" => "store"], function() {
     Route::get("/{id}", [StoreController::class, "storeItem"]);
 });
 
+Route::group(["prefix" => "giving"], function() {
+    Route::get("/modes", [GivingController::class, "givingModes"]);
+    Route::get("/options", [GivingController::class, "givingOptions"]);
+});
+
+Route::group(["prefix" => "bank_accounts"], function() {
+    Route::get("", [BankAccountController::class, "accounts"]);
+    Route::get("/{bankAccountId}", [BankAccountController::class, "account"]);
+});
+
+Route::group(["prefix" => "online_accounts"], function() {
+    Route::get("", [OnlineAccountController::class, "accounts"]);
+    Route::get("/{onlineAccountId}", [OnlineAccountController::class, "account"]);
+});
+
+
+Route::get("/countries", [UtilityController::class, "countries"]);
+
 //Protected Routes
 Route::middleware(UserAuth::class)->group(function () {
     Route::group(["prefix" => "slides"], function() {
@@ -113,6 +136,22 @@ Route::middleware(UserAuth::class)->group(function () {
         Route::post("", [StoreController::class, "addToStore"]);
         Route::post("/{id}", [StoreController::class, "editItem"]);
         Route::delete("/{id}", [StoreController::class, "deleteItem"]);
+    });
+
+    Route::group(["prefix" => "giving"], function() {
+        Route::post("/save_giving_account", [GivingController::class, "linkGivingAccount"]);
+    });
+
+    Route::group(["prefix" => "bank_accounts"], function() {
+        Route::post("", [BankAccountController::class, "save"]);
+        Route::post("/{bankAccountId}", [BankAccountController::class, "update"]);
+        Route::delete("/{bankAccountId}", [BankAccountController::class, "delete"]);
+    });
+    
+    Route::group(["prefix" => "online_accounts"], function() {
+        Route::post("", [OnlineAccountController::class, "save"]);
+        Route::post("/{onlineAccountId}", [OnlineAccountController::class, "update"]);
+        Route::delete("/{onlineAccountId}", [OnlineAccountController::class, "delete"]);
     });
 });
 

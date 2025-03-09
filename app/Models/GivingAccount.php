@@ -11,8 +11,8 @@ class GivingAccount extends Model
         return $this->belongsTo(GivingOption::class);
     }
 
-    public function bankAccount()
+    public function account()
     {
-        return $this->belongsTo(BankAccount::class);
+        return ($this->bank_account_id) ? $this->belongsTo(BankAccount::class) : $this->belongsTo(OnlineAccount::class);
     }
 }

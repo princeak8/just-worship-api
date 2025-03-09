@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\BaseRequest;
 
-class LinkGivingAccount extends BaseRequest
+class UpdateOnlineAccount extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +23,9 @@ class LinkGivingAccount extends BaseRequest
     public function rules(): array
     {
         return [
-            "bankAccountId" => "required_without:onlineAccountId|integer|exists:bank_accounts,id",
-            "onlineAccountId" => "required_without:bankAccountId|integer|exists:online_accounts,id",
-            "givingOptionId" => "required|integer|exists:giving_options,id"
+            "qrCodePhoto" => "nullable|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
+            "name" => "nullable|string",
+            "url" => "nullable|string|unique:online_bank_accounts,url"
         ];
     }
 }

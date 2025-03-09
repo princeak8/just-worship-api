@@ -5,9 +5,9 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-use App\Http\Resources\CountryResource;
+use App\Http\Resources\FileResource;
 
-class BankAccountResource extends JsonResource
+class OnlineAccountResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,11 +18,9 @@ class BankAccountResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "currency" => $this->currency,
-            "bank" => $this->bank,
             "name" => $this->name,
-            "number" => $this->number,
-            "country" => new CountryResource($this->country)
+            "url" => $this->url,
+            "qrCodePhoto" => new FileResource($this->qrCodePhoto)
         ];
     }
 }

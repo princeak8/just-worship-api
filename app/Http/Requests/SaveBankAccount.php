@@ -24,6 +24,7 @@ class SaveBankAccount extends BaseRequest
     {
         return [
             "countryId" => "required|integer|exists:countries,id",
+            "currency" => "nullable|string",
             "bank" => "required|string",
             "name" => "required|string",
             "number" => "required|string"

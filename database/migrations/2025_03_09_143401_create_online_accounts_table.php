@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('giving_accounts', function (Blueprint $table) {
+        Schema::create('online_accounts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("bank_account_id")->nullable();
-            $table->foreignId("online_account_id")->nullable();
-            $table->foreignId("giving_option_id");
+            $table->foreignId("qr_code_photo_id")->nullable();
+            $table->string("name");
+            $table->string("url");
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('giving_accounts');
+        Schema::dropIfExists('online_accounts');
     }
 };
