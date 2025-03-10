@@ -14,6 +14,11 @@ class GivingOption extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function givingAccounts()
+    {
+        return $this->hasMany(GivingAccount::class);
+    }
     
     public function accounts()
     {
