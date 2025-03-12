@@ -9,6 +9,7 @@ class SlideService
     public function save($data)
     {
         $slide = new Slide;
+        if(isset($data['title'])) $slide->title = $data['title'];
         $slide->photo_id = $data['photoId'];
         if(isset($data['message'])) $slide->message = $data['message'];
         if(isset($data['buttonText'])) $slide->button_text = $data['buttonText'];
@@ -19,6 +20,7 @@ class SlideService
 
     public function update($data, $slide)
     {
+        if(isset($data['title'])) $slide->title = $data['title'];
         if(isset($data['photoId'])) $slide->photo_id = $data['photoId'];
         if(isset($data['message'])) $slide->message = $data['message'];
         if(isset($data['buttonText'])) $slide->button_text = $data['buttonText'];

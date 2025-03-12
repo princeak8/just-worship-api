@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\BaseRequest;
 
-class CreateSlide extends BaseRequest
+class UpdateSlide extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class CreateSlide extends BaseRequest
     {
         return [
             "title" => "nullable|string",
-            "photo" => "required|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
+            "photo" => "nullable|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
             "message" => "nullable|string",
             "buttonText" => "nullable|string"
         ];

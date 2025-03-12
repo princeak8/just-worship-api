@@ -32,6 +32,7 @@ Route::group(['prefix' => '/auth'], function () {
 //Public Routes
 Route::group(["prefix" => "slides"], function() {
     Route::get("", [SlideController::class, "slides"]);
+    Route::get("/{slideId}", [SlideController::class, "slide"]);
 });
 
 Route::group(["prefix" => "about"], function() {
@@ -93,6 +94,7 @@ Route::get("/countries", [UtilityController::class, "countries"]);
 Route::middleware(UserAuth::class)->group(function () {
     Route::group(["prefix" => "slides"], function() {
         Route::post("", [SlideController::class, "save"]);
+        Route::post("/{slideId}", [SlideController::class, "update"]);
         Route::delete("/{slideId}", [SlideController::class, "delete"]);
     });
 

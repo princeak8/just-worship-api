@@ -19,6 +19,7 @@ class SlideResource extends JsonResource
     {
         return [
             "id" => $this->id,
+            "title" => $this->title,
             "photo" => new FileResource($this->photo),
             "message" => $this->message,
             "buttonText" => $this->button_text
