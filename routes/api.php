@@ -18,6 +18,8 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\GivingController;
 use App\Http\Controllers\BankAccountController;
 use App\Http\Controllers\OnlineAccountController;
+use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\MembershipController;
 
 use App\Http\Controllers\UtilityController;
 
@@ -87,6 +89,9 @@ Route::group(["prefix" => "online_accounts"], function() {
     Route::get("/{onlineAccountId}", [OnlineAccountController::class, "account"]);
 });
 
+Route::post("/subscribe", [SubscriberController::class, "subscribe"]);
+Route::post("/members/register", [MembershipController::class, "save"]);
+
 
 Route::get("/countries", [UtilityController::class, "countries"]);
 
@@ -155,6 +160,10 @@ Route::middleware(UserAuth::class)->group(function () {
         Route::post("/{onlineAccountId}", [OnlineAccountController::class, "update"]);
         Route::delete("/{onlineAccountId}", [OnlineAccountController::class, "delete"]);
     });
+
+    Route::get("/subscribers", [SubscriberController::class, "subscribers"]);
+
+    Route::get("/members", [MembershipController::class, "members"]);
 });
 
 
