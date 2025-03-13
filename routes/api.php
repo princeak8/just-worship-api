@@ -20,6 +20,7 @@ use App\Http\Controllers\BankAccountController;
 use App\Http\Controllers\OnlineAccountController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\UtilityController;
 
@@ -97,6 +98,10 @@ Route::get("/countries", [UtilityController::class, "countries"]);
 
 //Protected Routes
 Route::middleware(UserAuth::class)->group(function () {
+    Route::group(['prefix' => '/profile'], function () {
+        Route::get("", [ProfileController::class, "profile"]);
+    });
+
     Route::group(["prefix" => "slides"], function() {
         Route::post("", [SlideController::class, "save"]);
         Route::post("/{slideId}", [SlideController::class, "update"]);

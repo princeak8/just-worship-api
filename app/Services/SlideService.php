@@ -13,6 +13,7 @@ class SlideService
         $slide->photo_id = $data['photoId'];
         if(isset($data['message'])) $slide->message = $data['message'];
         if(isset($data['buttonText'])) $slide->button_text = $data['buttonText'];
+        if(isset($data['buttonUrl'])) $slide->button_url = $data['buttonUrl'];
         $slide->save();
 
         return $slide;
@@ -24,6 +25,7 @@ class SlideService
         if(isset($data['photoId'])) $slide->photo_id = $data['photoId'];
         if(isset($data['message'])) $slide->message = $data['message'];
         if(isset($data['buttonText'])) $slide->button_text = $data['buttonText'];
+        if(isset($data['buttonUrl'])) $slide->button_url = $data['buttonUrl'];
         $slide->update();
 
         return $slide;

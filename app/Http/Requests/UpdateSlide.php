@@ -26,7 +26,8 @@ class UpdateSlide extends BaseRequest
             "title" => "nullable|string",
             "photo" => "nullable|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
             "message" => "nullable|string",
-            "buttonText" => "nullable|string"
+            "buttonText" => "nullable|string",
+            "buttonUrl" => "nullable|string"
         ];
     }
 }
