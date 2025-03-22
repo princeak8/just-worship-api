@@ -26,12 +26,14 @@ class GivingOptionResource extends JsonResource
 
     private function accounts()
     {
+        // dd($this->givingAccounts);
         $accounts = [];
         if($this->givingAccounts->count() > 0) {
             foreach($this->givingAccounts as $givingAcc) {
                 $accounts[] = ($givingAcc->bank_account_id) ? new BankAccountResource($givingAcc->account) : new OnlineAccountResource($givingAcc->account);
             }
         }
+        // dd($accounts);
         return $accounts;
     }
 }

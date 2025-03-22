@@ -22,7 +22,8 @@ class GivingService
     {
         $account = new GivingAccount;
 
-        $account->bank_account_id = $data['bankAccountId'];
+        if(isset($data['bankAccountId'])) $account->bank_account_id = $data['bankAccountId'];
+        if(isset($data['onlineAccountId'])) $account->online_account_id = $data['onlineAccountId'];
         $account->giving_option_id = $data['givingOptionId'];
 
         $account->save();
