@@ -49,6 +49,6 @@ jobs:
         php artisan view:clear
 
         # Create Request Docs
-        php artisan laravel-request-docs:export
+        # php artisan laravel-request-docs:export
 
         EOF
