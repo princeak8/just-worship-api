@@ -10,14 +10,12 @@ class AboutService
     {
         $about = About::first();
         if(!$about) $about = new About;
-        if(isset($data['vision'])) {
-            $about->vision = $data['vision'];
-            $about->vision_photo_id = $data['visionPhotoId'];
-        }
-        if(isset($data['mission'])) {
-            $about->mission = $data['mission'];
-            $about->mission_photo_id = $data['missionPhotoId'];
-        }
+        if(isset($data['vision'])) $about->vision = $data['vision'];
+        if(isset($data['visionPhotoId'])) $about->vision_photo_id = $data['visionPhotoId'];
+        
+        if(isset($data['mission'])) $about->mission = $data['mission'];
+        if(isset($data['missionPhotoId'])) $about->mission_photo_id = $data['missionPhotoId'];
+        
         if(isset($data['header'])) $about->header = $data['header'];
         if(isset($data['content'])) $about->content = $data['content'];
         if(isset($data['pastorTitle'])) $about->pastor_title = $data['pastorTitle'];
