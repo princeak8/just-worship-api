@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->boolean("featured")->default(false)->after("name");
+            $table->time("event_time")->nullable()->after("event_date");
+            $table->time("location")->nullable()->after("event_time");
         });
     }
 
@@ -21,8 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('events', function (Blueprint $table) {
-            //
-        });
+        //
     }
 };

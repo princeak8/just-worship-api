@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Carbon\Carbon;
+
 use App\Models\Event;
 use App\Models\EventBooking;
 
@@ -13,6 +15,8 @@ class EventService
         $event->name = $data['name'];
         $event->cover_photo_id = $data['coverPhotoId'];
         $event->event_date = $data['eventDate'];
+        if(isset($data['eventTime'])) $event->event_time = Carbon::createFromFormat('h:i A', $data['eventTime'])->format('H:i:s');
+        if(isset($data['location'])) $event->location = $data['location'];
         if(isset($data['content'])) $event->content = $data['content'];
         if(isset($data['featured'])) $event->featured = $data['featured'];
         $event->save();
@@ -25,6 +29,8 @@ class EventService
         if(isset($data['name'])) $event->name = $data['name'];
         if(isset($data['coverPhotoId'])) $event->cover_photo_id = $data['coverPhotoId'];
         if(isset($data['eventDate'])) $event->event_date = $data['eventDate'];
+        if(isset($data['eventTime'])) $event->event_time = Carbon::createFromFormat('h:i A', $data['eventTime'])->format('H:i:s');
+        if(isset($data['location'])) $event->location = $data['location'];
         if(isset($data['content'])) $event->content = $data['content'];
         if(isset($data['featured'])) $event->featured = $data['featured'];
 

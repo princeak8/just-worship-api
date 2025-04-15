@@ -25,6 +25,8 @@ class AddEvent extends BaseRequest
         return [
             "name" => "required|string|unique:events,name",
             "eventDate" => "required|date",
+            "eventTime" => "nullable|date_format:h:i A",
+            "location" => "nullable|string",
             "coverPhoto" => "required|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
             "content" => "nullable|string",
             "featured" => "nullable|boolean"

@@ -25,6 +25,8 @@ class UpdateEvent extends BaseRequest
         return [
             "name" => "nullable|string|unique:events,name",
             "eventDate" => "nullable|date",
+            "eventTime" => "nullable|date_format:h:i A",
+            "location" => "nullable|string",
             "coverPhoto" => "nullable|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
             "content" => "nullable|string",
             "featured" => "nullable|boolean"
