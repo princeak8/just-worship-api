@@ -23,10 +23,10 @@ class SaveAbout extends BaseRequest
     public function rules(): array
     {
         return [
-            "mission" => "nullable|string|required_with:missionPhoto",
-            "missionPhoto" => "required_with:mission|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
-            "vision" => "nullable|string|required_with:visionPhoto",
-            "visionPhoto" => "required_with:vision|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
+            "mission" => "nullable|string",
+            "missionPhoto" => "image|mimes:jpg,jpeg,png,gif,webp|max:10024",
+            "vision" => "nullable|string",
+            "visionPhoto" => "image|mimes:jpg,jpeg,png,gif,webp|max:10024",
             "pastorPhoto" => "nullable|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
             "header" => "nullable|string",
             "content" => "nullable|string",
