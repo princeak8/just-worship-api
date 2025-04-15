@@ -25,7 +25,7 @@ class EventResource extends JsonResource
             "name" => $this->name,
             "featured" => ($this->featured == 1) ? true : false,
             "date" => $this->event_date,
-            "time" => Carbon::createFromFormat('H:i:s', $this->event_time)->format('h:i A'),
+            "time" => ($this->event_time) ? Carbon::createFromFormat('H:i:s', $this->event_time)->format('h:i A') : null,
             "location" => $this->location,
             "coverPhoto" => new FileResource($this->coverPhoto),
             "content" => $this->content,
