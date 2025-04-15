@@ -18,6 +18,11 @@ class AboutResource extends JsonResource
     {
         return [
             "id" => $this->id,
+            "header" => $this->header,
+            "content" => $this->content,
+            "pastorTitle" => $this->pastor_title,
+            "pastorBio" => $this->pastor_bio,
+            "pastorPhoto" => new FileResource($this->pastorPhoto),
             "vision" => $this->vision,
             "visionPhoto" => new FileResource($this->visionPhoto),
             "mission" => $this->mission,

@@ -17,4 +17,9 @@ class About extends Model
     {
         return $this->belongsTo(File::class, "vision_photo_id", "id");
     }
+
+    public function pastorPhoto()
+    {
+        return $this->belongsTo(File::class, "pastor_photo_id", "id");
+    }
 }
