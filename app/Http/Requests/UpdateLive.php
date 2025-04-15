@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\BaseRequest;
 
-class UpdateEvent extends BaseRequest
+class UpdateLive extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +23,12 @@ class UpdateEvent extends BaseRequest
     public function rules(): array
     {
         return [
-            "name" => "nullable|string|unique:events,name",
-            "eventDate" => "nullable|date",
+            "title" => "nullable|string|unique:lives,title",
+            "url" => "nullable|string|unique:lives,url",
+            "liveDate" => "nullable|date|date_format:Y-m-d|after:yesterday",
+            "liveTime" => "nullable|time|date_format:h:i A",
             "coverPhoto" => "nullable|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
-            "content" => "nullable|string",
-            "featured" => "nullable|boolean"
+            "description" => "nullable|string"
         ];
     }
 }

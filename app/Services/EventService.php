@@ -14,6 +14,7 @@ class EventService
         $event->cover_photo_id = $data['coverPhotoId'];
         $event->event_date = $data['eventDate'];
         if(isset($data['content'])) $event->content = $data['content'];
+        if(isset($data['featured'])) $event->featured = $data['featured'];
         $event->save();
 
         return $event;
@@ -25,6 +26,7 @@ class EventService
         if(isset($data['coverPhotoId'])) $event->cover_photo_id = $data['coverPhotoId'];
         if(isset($data['eventDate'])) $event->event_date = $data['eventDate'];
         if(isset($data['content'])) $event->content = $data['content'];
+        if(isset($data['featured'])) $event->featured = $data['featured'];
 
         $event->update();
 

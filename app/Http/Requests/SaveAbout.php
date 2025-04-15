@@ -24,9 +24,14 @@ class SaveAbout extends BaseRequest
     {
         return [
             "mission" => "nullable|string|required_with:missionPhoto",
-            "missionPhoto" => "|required_with:mission|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
+            "missionPhoto" => "required_with:mission|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
             "vision" => "nullable|string|required_with:visionPhoto",
-            "visionPhoto" => "|required_with:vision|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
+            "visionPhoto" => "required_with:vision|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
+            "pastorPhoto" => "nullable|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
+            "header" => "nullable|string",
+            "content" => "nullable|string",
+            "pastorTitle" => "nullable|string",
+            "pastorBio" => "nullable|string"
         ];
     }
 }

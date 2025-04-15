@@ -32,6 +32,7 @@ class AboutController extends Controller
 
         $oldMissionPhoto = null;
         $oldVisionPhoto = null;
+        $oldPastorPhoto = null;
 
         if($request->hasFile('missionPhoto')) {
              if($about && $about->missionPhoto) $oldMissionPhoto = $about->missionPhoto;
@@ -53,10 +54,21 @@ class AboutController extends Controller
            $data['visionPhotoId'] = $file->id;
        }
 
+       if($request->hasFile('pastorPhoto')) {
+            if($about && $about->pastorPhoto) $oldPastorPhoto = $about->pastorPhoto;
+            $fileData = [
+                "file" => $request->file('pastorPhoto'),
+                "fileType" => 'image'
+            ];
+            $file = $this->fileService->save($fileData, 'about');
+            $data['pastorPhotoId'] = $file->id;
+       }
+
         $about = $this->aboutService->save($data);
 
         if($oldMissionPhoto) $oldMissionPhoto->delete();
         if($oldVisionPhoto) $oldVisionPhoto->delete();
+        if($oldPastorPhoto) $oldPastorPhoto->delete();
 
         return Utilities::ok(new AboutResource($about));
     }

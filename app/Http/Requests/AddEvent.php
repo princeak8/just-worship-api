@@ -26,7 +26,8 @@ class AddEvent extends BaseRequest
             "name" => "required|string|unique:events,name",
             "eventDate" => "required|date",
             "coverPhoto" => "required|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
-            "content" => "nullable|string"
+            "content" => "nullable|string",
+            "featured" => "nullable|boolean"
         ];
     }
 }

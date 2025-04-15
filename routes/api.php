@@ -14,6 +14,7 @@ use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\YoutubeController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\LiveController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\GivingController;
 use App\Http\Controllers\BankAccountController;
@@ -68,6 +69,12 @@ Route::group(["prefix" => "events"], function() {
     Route::get("", [EventController::class, "events"]);
     Route::get("/{id}", [EventController::class, "event"]);
     Route::post("/book", [EventController::class, "book"]);
+});
+
+Route::group(["prefix" => "live"], function() {
+    Route::get("", [LiveController::class, "lives"]);
+    Route::get("/{id}", [LiveController::class, "live"]);
+    Route::post("/book", [LiveController::class, "book"]);
 });
 
 Route::group(["prefix" => "store"], function() {
@@ -142,6 +149,12 @@ Route::middleware(UserAuth::class)->group(function () {
         Route::post("", [EventController::class, "save"]);
         Route::post("/{id}", [EventController::class, "update"]);
         Route::delete("/{id}", [EventController::class, "delete"]);
+    });
+
+    Route::group(["prefix" => "live"], function() {
+        Route::post("", [LiveController::class, "save"]);
+        Route::post("/{id}", [LiveController::class, "update"]);
+        Route::delete("/{id}", [LiveController::class, "delete"]);
     });
 
     Route::group(["prefix" => "store"], function() {
