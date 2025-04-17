@@ -37,7 +37,7 @@ class LiveService
 
     public function lives()
     {
-        return Live::all();
+        return Live::orderBy("live_date", "DESC")->get();
     }
 
     public function live($id, $with=[])
