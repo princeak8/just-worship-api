@@ -23,7 +23,7 @@ class SlideResource extends JsonResource
             "photo" => new FileResource($this->photo),
             "message" => $this->message,
             "buttonText" => $this->button_text,
-            "buttonUtl" => $this->button_url
+            "buttonUrl" => $this->button_url
         ];
     }
 }
