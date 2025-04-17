@@ -15,7 +15,7 @@ class LiveService
         $live->url = $data['url'];
         $live->cover_photo_id = $data['coverPhotoId'];
         $live->live_date = $data['liveDate'];
-        if(isset($data['liveTime'])) $live->live_time = Carbon::createFromFormat('h:i A', $data['liveTime'])->format('H:i:s');
+        if(isset($data['liveTime'])) $live->live_time = Carbon::createFromFormat('h:i', $data['liveTime'])->format('H:i:s');
         if(isset($data['description'])) $live->description = $data['description'];
         $live->save();
 
@@ -27,7 +27,7 @@ class LiveService
         if(isset($data['title'])) $live->title = $data['title'];
         if(isset($data['coverPhotoId'])) $live->cover_photo_id = $data['coverPhotoId'];
         if(isset($data['liveDate'])) $live->live_date = $data['liveDate'];
-        if(isset($data['liveTime'])) $live->live_time = Carbon::createFromFormat('h:i A', $data['liveTime'])->format('H:i:s');
+        if(isset($data['liveTime'])) $live->live_time = Carbon::createFromFormat('h:i', $data['liveTime'])->format('H:i:s');
         if(isset($data['description'])) $live->description = $data['description'];
 
         $live->update();
