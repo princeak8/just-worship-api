@@ -102,6 +102,7 @@ Route::post("/members/register", [MembershipController::class, "save"]);
 
 
 Route::get("/countries", [UtilityController::class, "countries"]);
+Route::get("/banks", [UtilityController::class, "banks"]);
 
 //Protected Routes
 Route::middleware(UserAuth::class)->group(function () {

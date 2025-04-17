@@ -22,6 +22,8 @@ class GalleryResource extends JsonResource
             "id" => $this->id,
             "photo" => new FileResource($this->photo),
             "title" => $this->title,
+            "year" => $this->year,
+            "location" => $this->location,
             "event" => new EventResource($this->event)
         ];
     }

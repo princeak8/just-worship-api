@@ -25,7 +25,9 @@ class UpdateGalleryPhoto extends BaseRequest
         return [
             "photo" => "nullable|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
             "eventId" => "nullable|integer|exists:events,id",
-            "title" => "nullable|string"
+            "title" => "nullable|string",
+            "year" => "nullable|date|date_format:Y",
+            "location" => "nullable|string"
         ];
     }
 }

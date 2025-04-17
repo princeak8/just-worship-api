@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Resources\CountryResource;
+use App\Http\Resources\BankResource;
 
 use App\Services\UtilityService;
 
@@ -24,5 +25,12 @@ class UtilityController extends Controller
         $countries = $this->utilityService->countries();
 
         return Utilities::ok(CountryResource::collection($countries));
+    }
+
+    public function banks()
+    {
+        $banks = $this->utilityService->banks();
+
+        return Utilities::ok(BankResource::collection($banks));
     }
 }

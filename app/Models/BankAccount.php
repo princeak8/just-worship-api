@@ -10,4 +10,9 @@ class BankAccount extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function bank()
+    {
+        return $this->belongsTo(Bank::class);
+    }
 }
