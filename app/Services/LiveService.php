@@ -16,6 +16,7 @@ class LiveService
         $live->cover_photo_id = $data['coverPhotoId'];
         $live->live_date = $data['liveDate'];
         if(isset($data['liveTime'])) $live->live_time = Carbon::createFromFormat('H:i', $data['liveTime'])->format('H:i:s');
+        if(isset($data['minister'])) $live->minister = $data['minister'];
         if(isset($data['description'])) $live->description = $data['description'];
         $live->save();
 
@@ -28,6 +29,7 @@ class LiveService
         if(isset($data['coverPhotoId'])) $live->cover_photo_id = $data['coverPhotoId'];
         if(isset($data['liveDate'])) $live->live_date = $data['liveDate'];
         if(isset($data['liveTime'])) $live->live_time = Carbon::createFromFormat('H:i', $data['liveTime'])->format('H:i:s');
+        if(isset($data['minister'])) $live->minister = $data['minister'];
         if(isset($data['description'])) $live->description = $data['description'];
 
         $live->update();
@@ -37,7 +39,7 @@ class LiveService
 
     public function lives()
     {
-        return Live::orderBy("live_date", "DESC")->get();
+        return Live::orderBy("live_date", "DESC")->orderBy("live_date", "DESC")->get();
     }
 
     public function live($id, $with=[])

@@ -24,6 +24,7 @@ class LiveResource extends JsonResource
             "date" => $this->live_date,
             "time" => ($this->live_time) ? Carbon::createFromFormat('H:i:s', $this->live_time)->format('H:i') : null,
             "coverPhoto" => new FileResource($this->coverPhoto),
+            "minister" => $this->minister,
             "description" => $this->description,
         ];
     }
