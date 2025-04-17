@@ -25,8 +25,8 @@ class AddLive extends BaseRequest
         return [
             "title" => "required|string|unique:lives,title",
             "url" => "required|string|unique:lives,url",
-            "liveDate" => "required|date|date_format:Y-m-d|after:yesterday",
-            "liveTime" => "required|date_format:h:i A",
+            "liveDate" => "nullable|date|date_format:Y-m-d|after:yesterday",
+            "liveTime" => "nullable|date_format:h:i A",
             "coverPhoto" => "required|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
             "description" => "nullable|string"
         ];
