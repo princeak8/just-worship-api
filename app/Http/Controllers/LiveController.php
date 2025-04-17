@@ -86,7 +86,7 @@ class LiveController extends Controller
         $live = $this->liveService->live($liveId);
         if(!$live) return Utilities::error402("Live not found");
 
-        return Utilities::ok(new EventResource($live));
+        return Utilities::ok(new LiveResource($live));
     }
 
     public function lives()
