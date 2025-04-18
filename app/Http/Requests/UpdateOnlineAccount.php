@@ -25,7 +25,7 @@ class UpdateOnlineAccount extends BaseRequest
         return [
             "qrCodePhoto" => "nullable|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
             "name" => "nullable|string",
-            "url" => "nullable|string|unique:online_bank_accounts,url"
+            "url" => "nullable|string|unique:online_accounts,url"
         ];
     }
 }
