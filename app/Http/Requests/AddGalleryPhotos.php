@@ -26,7 +26,7 @@ class AddGalleryPhotos extends BaseRequest
             "photo" => "required|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
             "eventId" => "nullable|integer|exists:events,id",
             "title" => "nullable|string",
-            "year" => "nullable|date|date_format:Y",
+            "year" => "nullable|date_format:Y",
             "location" => "nullable|string"
         ];
     }
