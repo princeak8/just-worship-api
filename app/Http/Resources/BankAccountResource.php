@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 use App\Http\Resources\CountryResource;
+use App\Http\Resources\BankResource;
 
 class BankAccountResource extends JsonResource
 {
@@ -20,7 +21,7 @@ class BankAccountResource extends JsonResource
             "id" => $this->id,
             "currency" => $this->currency,
             "bank" => $this->bank,
-            "name" => $this->name,
+            "name" => new BankResource($this->bank),
             "number" => $this->number,
             "country" => new CountryResource($this->country)
         ];

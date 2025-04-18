@@ -25,7 +25,7 @@ class UpdateBankAccount extends BaseRequest
         return [
             "countryId" => "nullable|integer|exists:countries,id",
             "currency" => "nullable|string",
-            "bank" => "nullable|string",
+            "bankId" => "required|integer|exists:banks,id",
             "name" => "nullable|string",
             "number" => "nullable|string"
         ];

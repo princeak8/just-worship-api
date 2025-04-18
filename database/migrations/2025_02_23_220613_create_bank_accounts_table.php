@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId("country_id");
             $table->string("currency")->default("naira");
-            $table->string("bank");
+            $table->foreignId("bank_id");
             $table->string("name");
             $table->string("number");
             $table->timestamps();

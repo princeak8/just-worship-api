@@ -11,7 +11,7 @@ class BankAccountService
         $account = new BankAccount;
         if(isset($data['currency'])) $account->currency = $data['currency'];
         $account->country_id = $data['countryId'];
-        $account->bank = $data['bank'];
+        $account->bank_id = $data['bankId'];
         $account->name = $data['name'];
         $account->number = $data['number'];
         $account->save();
@@ -23,7 +23,7 @@ class BankAccountService
     {
         if(isset($data['countryId'])) $account->country_id = $data['countryId'];
         if(isset($data['currency'])) $account->currency = $data['currency'];
-        if(isset($data['bank'])) $account->bank = $data['bank'];
+        if(isset($data['bankId'])) $account->bank_id = $data['bankId'];
         if(isset($data['name'])) $account->name = $data['name'];
         if(isset($data['number'])) $account->number = $data['number'];
         $account->update();
