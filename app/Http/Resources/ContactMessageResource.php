@@ -20,7 +20,8 @@ class ContactMessageResource extends JsonResource
             "name" => $this->name,
             "email" => $this->email,
             "message" => $this->message,
-            "read" => ($this->read == 1) ? true : false
+            "read" => ($this->read == 1) ? true : false,
+            "receivedAt" => $this->created_at->format('F j, Y')
         ];
     }
 }
