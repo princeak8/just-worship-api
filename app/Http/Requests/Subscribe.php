@@ -23,7 +23,7 @@ class Subscribe extends BaseRequest
     public function rules(): array
     {
         return [
-            "name" => "required|string",
+            "name" => "nullable|string",
             "email" => "required|email|unique:subscribers,email"
         ];
     }

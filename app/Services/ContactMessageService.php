@@ -9,7 +9,9 @@ class ContactMessageService
     public function save($data)
     {
         $message = new ContactMessage;
+        $message->title = $data['title'];
         $message->name = $data['name'];
+        if(isset($data['email'])) $message->email = $data['email'];
         $message->message = $data['message'];
         $message->save();
 

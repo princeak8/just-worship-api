@@ -10,7 +10,7 @@ class SubscriberService
     {
         $subscriber = new Subscriber;
 
-        $subscriber->name = $data['name'];
+        if(isset($data['name'])) $subscriber->name = $data['name'];
         $subscriber->email = $data['email'];
         $subscriber->save();
 

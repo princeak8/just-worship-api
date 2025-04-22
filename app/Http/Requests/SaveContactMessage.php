@@ -23,7 +23,9 @@ class SaveContactMessage extends BaseRequest
     public function rules(): array
     {
         return [
+            "title" => "required|string",
             "name" => "required|string",
+            "email" => "nullable|email",
             "message" => "required|string"
         ];
     }
