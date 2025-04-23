@@ -26,7 +26,7 @@ class UpdateLive extends BaseRequest
             "title" => "nullable|string|unique:lives,title",
             "url" => "nullable|string|unique:lives,url",
             "liveDate" => "nullable|date|date_format:Y-m-d|after:yesterday",
-            "liveTime" => "nullable|time|date_format:h:i A",
+            "liveTime" => "nullable|date_format:h:i A",
             "coverPhoto" => "nullable|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
             "minister" => "nullable|string",
             "description" => "nullable|string"
