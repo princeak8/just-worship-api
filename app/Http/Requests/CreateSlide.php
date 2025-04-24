@@ -24,7 +24,7 @@ class CreateSlide extends BaseRequest
     {
         return [
             "title" => "nullable|string",
-            "photo" => "required|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
+            "photo" => "required|image|mimes:jpg,jpeg,png,gif,webp|max:20024",
             "message" => "nullable|string",
             "buttonText" => "nullable|string",
             "buttonUrl" => "nullable|string"
