@@ -31,7 +31,7 @@ class StoreService
 
     public function stores()
     {
-        return Store::all();
+        return Store::orderBy("created_at", "DESC")->get();
     }
 
     public function store($id)

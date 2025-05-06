@@ -33,7 +33,7 @@ class SlideService
 
     public function slides()
     {
-        return Slide::all();
+        return Slide::orderBy("created_at", "DESC")->get();
     }
 
     public function slide($id)

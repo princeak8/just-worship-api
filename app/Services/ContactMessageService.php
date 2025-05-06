@@ -20,12 +20,12 @@ class ContactMessageService
 
     public function messages()
     {
-        return ContactMessage::all();
+        return ContactMessage::orderBy("created_at", "DESC")->get();
     }
 
     public function unreadMessages()
     {
-        return ContactMessage::where("read", 0)->get();
+        return ContactMessage::where("read", 0)->orderBy("created_at", "DESC")->get();
     }
 
     public function message($id)

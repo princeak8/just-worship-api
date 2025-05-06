@@ -33,7 +33,7 @@ class GalleryService
 
     public function gallery()
     {
-        return Gallery::all();
+        return Gallery::orderBy("created_at", "DESC")->get();
     }
 
     public function galleryPhoto($id)

@@ -41,7 +41,7 @@ class EventService
 
     public function events()
     {
-        return Event::all();
+        return Event::orderBy("created_at", "DESC")->get();
     }
 
     public function event($id, $with=[])

@@ -22,6 +22,9 @@ use App\Http\Controllers\OnlineAccountController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MusicController;
+use App\Http\Controllers\StoryController;
+use App\Http\Controllers\CenterController;
 
 use App\Http\Controllers\UtilityController;
 
@@ -95,6 +98,21 @@ Route::group(["prefix" => "bank_accounts"], function() {
 Route::group(["prefix" => "online_accounts"], function() {
     Route::get("", [OnlineAccountController::class, "accounts"]);
     Route::get("/{onlineAccountId}", [OnlineAccountController::class, "account"]);
+});
+
+Route::group(["prefix" => "music"], function() {
+    Route::get("", [MusicController::class, "all"]);
+    Route::get("/{musicId}", [MusicController::class, "music"]);
+});
+
+Route::group(["prefix" => "center"], function() {
+    Route::get("", [CenterController::class, "centers"]);
+    Route::get("/{centerId}", [CenterController::class, "center"]);
+});
+
+Route::group(["prefix" => "stories"], function() {
+    Route::get("", [StoryController::class, "stories"]);
+    Route::get("/{storyId}", [StoryController::class, "story"]);
 });
 
 Route::post("/subscribe", [SubscriberController::class, "subscribe"]);
@@ -178,6 +196,24 @@ Route::middleware(UserAuth::class)->group(function () {
         Route::post("", [OnlineAccountController::class, "save"]);
         Route::post("/{onlineAccountId}", [OnlineAccountController::class, "update"]);
         Route::delete("/{onlineAccountId}", [OnlineAccountController::class, "delete"]);
+    });
+
+    Route::group(["prefix" => "music"], function() {
+        Route::post("", [MusicController::class, "save"]);
+        Route::post("/{musicId}", [MusicController::class, "update"]);
+        Route::delete("/{musicId}", [MusicController::class, "delete"]);
+    });
+    
+    Route::group(["prefix" => "center"], function() {
+        Route::post("", [CenterController::class, "save"]);
+        Route::post("/{centerId}", [CenterController::class, "update"]);
+        Route::delete("/{centerId}", [CenterController::class, "delete"]);
+    });
+    
+    Route::group(["prefix" => "stories"], function() {
+        Route::post("", [StoryController::class, "save"]);
+        Route::post("/{storyId}", [StoryController::class, "update"]);
+        Route::delete("/{storyId}", [StoryController::class, "delete"]);
     });
 
     Route::get("/subscribers", [SubscriberController::class, "subscribers"]);

@@ -21,7 +21,7 @@ class MembershipService
 
     public function members()
     {
-        return Membership::all();
+        return Membership::orderBy("created_at", "DESC")->get();
     }
 
     public function getById($id)
