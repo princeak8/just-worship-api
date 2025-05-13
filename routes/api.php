@@ -178,7 +178,7 @@ Route::middleware(UserAuth::class)->group(function () {
 
     Route::group(["prefix" => "events"], function() {
         Route::post("", [EventController::class, "save"]);
-        Route::post("/{id}", [EventController::class, "update"]);
+        Route::post("/{eventId}", [EventController::class, "update"]);
         Route::delete("/{id}", [EventController::class, "delete"]);
     });
 
