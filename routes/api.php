@@ -25,6 +25,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MusicController;
 use App\Http\Controllers\StoryController;
 use App\Http\Controllers\CenterController;
+use App\Http\Controllers\VolunteerController;
+use App\Http\Controllers\VolunteeringTeamController;
 
 use App\Http\Controllers\UtilityController;
 
@@ -105,7 +107,7 @@ Route::group(["prefix" => "music"], function() {
     Route::get("/{musicId}", [MusicController::class, "music"]);
 });
 
-Route::group(["prefix" => "center"], function() {
+Route::group(["prefix" => "centers"], function() {
     Route::get("", [CenterController::class, "centers"]);
     Route::get("/{centerId}", [CenterController::class, "center"]);
 });
@@ -113,6 +115,16 @@ Route::group(["prefix" => "center"], function() {
 Route::group(["prefix" => "stories"], function() {
     Route::get("", [StoryController::class, "stories"]);
     Route::get("/{storyId}", [StoryController::class, "story"]);
+});
+
+Route::group(["prefix" => "volunteering_teams"], function() {
+    Route::get("", [VolunteeringTeamController::class, "teams"]);
+    Route::get("/{teamId}", [VolunteeringTeamController::class, "team"]);
+});
+
+Route::group(["prefix" => "volunteers"], function() {
+    Route::get("", [VolunteerController::class, "volunteers"]);
+    Route::get("/{volunteerId}", [VolunteerController::class, "getVolunteer"]);
 });
 
 Route::post("/subscribe", [SubscriberController::class, "subscribe"]);
@@ -204,7 +216,7 @@ Route::middleware(UserAuth::class)->group(function () {
         Route::delete("/{musicId}", [MusicController::class, "delete"]);
     });
     
-    Route::group(["prefix" => "center"], function() {
+    Route::group(["prefix" => "centers"], function() {
         Route::post("", [CenterController::class, "save"]);
         Route::post("/{centerId}", [CenterController::class, "update"]);
         Route::delete("/{centerId}", [CenterController::class, "delete"]);
@@ -214,6 +226,18 @@ Route::middleware(UserAuth::class)->group(function () {
         Route::post("", [StoryController::class, "save"]);
         Route::post("/{storyId}", [StoryController::class, "update"]);
         Route::delete("/{storyId}", [StoryController::class, "delete"]);
+    });
+
+    Route::group(["prefix" => "volunteering_teams"], function() {
+        Route::post("", [VolunteeringTeamController::class, "save"]);
+        Route::post("/{teamId}", [VolunteeringTeamController::class, "update"]);
+        Route::delete("/{teamId}", [VolunteeringTeamController::class, "delete"]);
+    });
+    
+    Route::group(["prefix" => "volunteers"], function() {
+        Route::post("", [VolunteerController::class, "save"]);
+        Route::post("/{volunteerId}", [VolunteerController::class, "update"]);
+        Route::delete("/{volunteerId}", [VolunteerController::class, "delete"]);
     });
 
     Route::get("/subscribers", [SubscriberController::class, "subscribers"]);

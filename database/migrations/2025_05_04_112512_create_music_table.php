@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->string("artist", 255);
-            $table->string("featuring", 255);
+            $table->string("featuring", 255)->nullable();
             $table->string("link");
             $table->foreignId("cover_photo_id");
             $table->boolean("default")->default(false);

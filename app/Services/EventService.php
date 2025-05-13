@@ -49,6 +49,11 @@ class EventService
         return Event::with($with)->where("id", $id)->first();
     }
 
+    public function eventByName($name)
+    {
+        return  Event::where("name", $name)->first();
+    }
+
     public function delete($event)
     {
         $event->delete();

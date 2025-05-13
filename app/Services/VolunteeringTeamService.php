@@ -27,14 +27,14 @@ class VolunteeringTeamService
         return $team;
     }
 
-    public function getAllTeam()
+    public function getAllTeam($with=[])
     {
-        return VolunteeringTeam::orderBy("created_at", "DESC")->get();
+        return VolunteeringTeam::with($with)->orderBy("created_at", "DESC")->get();
     }
 
-    public function getTeam($teamId)
+    public function getTeam($teamId, $with=[])
     {
-        return VolunteeringTeam::find($teamId);
+        return VolunteeringTeam::with($with)->where("id", $teamId)->first();
     }
 
     public function delete($team)

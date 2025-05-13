@@ -25,7 +25,7 @@ class SaveMusic extends BaseRequest
         return [
             "name" => "required|string",
             "artist" => "required|string",
-            "featuring" => "required|string",
+            "featuring" => "nullable|string",
             "link" => "required|string",
             "coverPhoto" => "required|image|mimes:jpg,jpeg,png,gif,webp|max:10024"
         ];

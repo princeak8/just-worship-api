@@ -9,11 +9,12 @@ class CenterService
     public function save($data)
     {
         $center = new Center;
-        $center->name = $data['name'];    
-        $center->artist = $data['artist'];
-        $center->featuring = $data['featuring'];
-        $center->link = $data['link'];
-        $center->cover_photo_id = $data['coverPhotoId'];
+        $center->location = $data['location'];    
+        $center->address = $data['address'];
+        $center->photo_id = $data['photoId'];
+        $center->country_id = $data['countryId'];
+        if(isset($data['latitude'])) $center->latitude = $data['latitude'];
+        if(isset($data['longitude'])) $center->longitude = $data['longitude'];
         $center->save();
 
         return $center;
@@ -21,11 +22,12 @@ class CenterService
 
     public function update($data, $center)
     {
-        if(isset($data['name'])) $center->name = $data['name'];    
-        if(isset($data['artist'])) $center->artist = $data['artist'];
-        if(isset($data['featuring'])) $center->featuring = $data['featuring'];
-        if(isset($data['link'])) $center->link = $data['link'];
-        if(isset($data['coverPhotoId'])) $center->cover_photo_id = $data['coverPhotoId'];
+        if(isset($data['location'])) $center->location = $data['location'];    
+        if(isset($data['address'])) $center->address = $data['address'];
+        if(isset($data['photoId'])) $center->photo_id = $data['photoId'];
+        if(isset($data['countryId'])) $center->country_id = $data['countryId'];
+        if(isset($data['latitude'])) $center->latitude = $data['latitude'];
+        if(isset($data['longitude'])) $center->longitude = $data['longitude'];
         $center->update();
 
         return $center;

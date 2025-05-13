@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use App\Http\Requests\BaseRequest;
 
 class UpdateEvent extends BaseRequest
@@ -23,7 +24,11 @@ class UpdateEvent extends BaseRequest
     public function rules(): array
     {
         return [
-            "name" => "nullable|string|unique:events,name",
+            "name" => [
+                "nullable",
+                "string",
+                Rule::unique("events", "name")->ignore($this->route("eventId"))
+            ],
             "eventDate" => "nullable|date",
             "eventTime" => "nullable|date_format:h:i A",
             "location" => "nullable|string",

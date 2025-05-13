@@ -28,6 +28,18 @@ class VolunteerService
         $volunteerTeam->save();
     }
 
+    public function update($data, $volunteer)
+    {
+        if(isset($data['name'])) $volunteer->name = $data['name'];    
+        if(isset($data['email'])) $volunteer->email = $data['email'];
+        if(isset($data['phoneNumber'])) $volunteer->phone_number = $data['phoneNumber'];
+        if(isset($data['countryId'])) $volunteer->country_id = $data['countryId'];
+        if(isset($data['city'])) $volunteer->city = $data['city'];
+        $volunteer->update();
+
+        return $volunteer;
+    }
+
     public function getVolunteers($with=[])
     {
         return Volunteer::with($with)->orderBy("created_at", "DESC")->get();
@@ -36,6 +48,11 @@ class VolunteerService
     public function getVolunteer($volunteerId, $with=[])
     {
         return Volunteer::with($with)->where("id", $volunteerId)->first();
+    }
+
+    public function getVolunteerByEmail($email, $with=[])
+    {
+        return Volunteer::with($with)->where("email", $email)->first();
     }
 
     public function delete($volunteer)

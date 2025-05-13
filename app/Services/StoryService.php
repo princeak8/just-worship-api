@@ -11,7 +11,7 @@ class StoryService
         $story = new Story;
         $story->title = $data['title'];    
         $story->content = $data['content'];
-        $story->date = $data['date'];
+        $story->story_date = $data['storyDate'];
         $story->save();
 
         return $story;
@@ -21,7 +21,7 @@ class StoryService
     {
         if(isset($data['title'])) $story->title = $data['title'];    
         if(isset($data['content'])) $story->content = $data['content'];
-        if(isset($data['date'])) $story->date = $data['date'];
+        if(isset($data['storyDate'])) $story->story_date = $data['storyDate'];
         $story->update();
 
         return $story;

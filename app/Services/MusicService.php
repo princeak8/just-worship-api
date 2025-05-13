@@ -11,7 +11,7 @@ class MusicService
         $music = new Music;
         $music->name = $data['name'];    
         $music->artist = $data['artist'];
-        $music->featuring = $data['featuring'];
+        if(isset($data['featuring'])) $music->featuring = $data['featuring'];
         $music->link = $data['link'];
         $music->cover_photo_id = $data['coverPhotoId'];
         $music->save();

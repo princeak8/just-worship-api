@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\BaseRequest;
 
-class Volunteer extends BaseRequest
+class UpdateVolunteer extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +23,11 @@ class Volunteer extends BaseRequest
     public function rules(): array
     {
         return [
-            "name" => "required|string",
-            "email" => "required|email",
-            "phoneNumber" => "required|string",
-            "countryId" => "required|integer|exists:countries,id",
-            "city" => "required|string",
-            "teamId" => "required|integer"
+            "name" => "nullable|string",
+            "email" => "nullable|email",
+            "phoneNumber" => "nullable|string",
+            "countryId" => "nullable|integer|exists:countries,id",
+            "city" => "nullable|string",
         ];
     }
 }

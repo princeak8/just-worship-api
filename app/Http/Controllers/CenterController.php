@@ -10,21 +10,31 @@ use App\Http\Requests\UpdateCenter;
 use App\Http\Resources\CenterResource;
 
 use App\Services\CenterService;
+use App\Services\FileService;
 
 use App\Utilities;
 
 class CenterController extends Controller
 {
     private $centerService;
+    private $fileService;
 
     public function __construct()
     {
         $this->centerService = new CenterService;
+        $this->fileService = new FileService;
     }
 
     public function save(SaveCenter $request)
     {
         $data = $request->validated();
+
+        $fileData = [
+            "file" => $request->file('photo'),
+            "fileType" => 'image'
+        ];
+        $file = $this->fileService->save($fileData, 'centers');
+        $data['photoId'] = $file->id;
 
         $center = $this->centerService->save($data);
 
@@ -40,7 +50,21 @@ class CenterController extends Controller
         $center = $this->centerService->getCenter($centerId);
         if(!$center) return Utilities::error402("center not Found");
 
+        $oldPhoto = null;
+        
+        if($request->hasFile('photo')) {
+            $oldPhoto = $center->photo;
+            $fileData = [
+                "file" => $request->file('photo'),
+                "fileType" => 'image'
+            ];
+            $file = $this->fileService->save($fileData, 'centers');
+            $data['photoId'] = $file->id;
+        }
+
         $center = $this->centerService->update($data, $center);
+
+        if($oldPhoto) $oldPhoto->delete();
 
         return Utilities::ok(new CenterResource($center));
     }

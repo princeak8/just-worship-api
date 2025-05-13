@@ -27,6 +27,7 @@ class UpdateCenter extends BaseRequest
             "description" => "nullable|string",
             "address" => "nullable|string",
             "photo" => "nullable|image|mimes:jpg,jpeg,png,gif,webp|max:10024",
+            "countryId" => "required|integer|exists:countries,id",
             "latitude" => "nullable|numeric",
             "longitude" => "nullable|numeric"
         ];
