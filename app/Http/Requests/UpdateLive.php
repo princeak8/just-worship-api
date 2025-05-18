@@ -23,7 +23,7 @@ class UpdateLive extends BaseRequest
      */
     public function rules(): array
     {
-        dd(Rule::unique("lives", "title")->ignore($this->route("id")));
+        // dd(Rule::unique("lives", "title")->ignore($this->route("id")));
         return [
             "title" => [
                 "nullable",
