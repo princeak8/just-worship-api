@@ -23,6 +23,7 @@ class UpdateLive extends BaseRequest
      */
     public function rules(): array
     {
+        dd($this->route("id"));
         return [
             "title" => [
                 "nullable",
