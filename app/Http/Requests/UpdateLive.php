@@ -23,6 +23,11 @@ class UpdateLive extends BaseRequest
     public function rules(): array
     {
         return [
+            "title" => [
+                "nullable",
+                "string",
+                Rule::unique("lives", "title")->ignore($this->route("id"))
+            ],
             "title" => "nullable|string|unique:lives,title",
             "url" => "nullable|string|unique:lives,url",
             "liveDate" => "nullable|date|date_format:Y-m-d|after:yesterday",
