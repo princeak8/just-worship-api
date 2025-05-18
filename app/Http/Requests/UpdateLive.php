@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\BaseRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateLive extends BaseRequest
 {
