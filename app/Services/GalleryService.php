@@ -6,6 +6,8 @@ use App\Models\Gallery;
 
 class GalleryService
 {
+    public $count = false;
+
     public function save($data)
     {
         $gallery = new Gallery;
@@ -31,9 +33,14 @@ class GalleryService
         return $gallery;
     }
 
-    public function gallery()
+    public function gallery($offset=0, $perPage=null)
     {
-        return Gallery::orderBy("created_at", "DESC")->get();
+        $query = Gallery::query(); 
+        
+        if($this->count) return $query->count();
+
+        if($perPage==null) $perPage=env('PAGINATION_PER_PAGE');
+        return $query->offset($offset)->limit($perPage)->orderBy("created_at", "DESC")->get();
     }
 
     public function galleryPhoto($id)

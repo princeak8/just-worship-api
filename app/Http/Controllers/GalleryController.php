@@ -67,11 +67,20 @@ class GalleryController extends Controller
         return Utilities::ok(new GalleryResource($galleryPhoto));
     }
 
-    public function gallery()
+    public function gallery(Request $request)
     {
-        $gallery = $this->galleryService->gallery();
+        $page = ($request->query('page')) ?? 1;
+        $perPage = ($request->query('perPage'));
+        if(!is_int((int) $page) || $page <= 0) $page = 1;
+        if(!is_int((int) $perPage) || $perPage==null) $perPage = env('PAGINATION_PER_PAGE');
+        $offset = $perPage * ($page-1);
 
-        return Utilities::ok(GalleryResource::collection($gallery));
+        $gallery = $this->galleryService->gallery($offset, $perPage);
+
+        $this->galleryService->count = true;
+        $total = $this->galleryService->gallery();
+
+        return Utilities::paginatedOkay(GalleryResource::collection($gallery), $page, $perPage, $total);
     }
 
     public function galleryPhoto($id)
