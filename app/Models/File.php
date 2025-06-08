@@ -14,7 +14,8 @@ class File extends Model
         parent::boot();
 
         self::deleting(function (File $file) {
-            Storage::disk('public')->delete($file->url); 
+            Storage::disk('public')->delete($file->url);
+            if($file->compressed_url) Storage::disk('public')->delete($file->compressed_url); 
         });
     }
 }

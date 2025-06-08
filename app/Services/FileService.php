@@ -3,15 +3,16 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
 use App\Models\File;
 
 class FileService
 {
-    public function upload($file, $folder = 'documents')
+    public function upload($file, $folder = 'documents', $filename = null)
     {
         // Define the path where the file will be stored
         $path = $folder.'/'; // You can change this to your desired directory
-        $filename = time() . '_' . $file->getClientOriginalName(); // Create a unique filename
+        if(!$filename) $filename = time() . '_' . $file->getClientOriginalName(); // Create a unique filename
 
         // Save the file to the local storage using Storage facade
         Storage::disk('public')->putFileAs($path, $file, $filename);
@@ -28,7 +29,13 @@ class FileService
         $file = new File;
 
         $fileArr = $this->upload($data['file'], $folder);
+
+        $size = $data['file']->getSize();
+
+        $compressedUrl = ($size/1000000 > 2) ? $this->compressAndUpload($data['file'], $folder, $fileArr['filename']) : $fileArr['url'];
+
         $file->url = $fileArr['url'];
+        $file->compressed_url = $compressedUrl;
         $file->filename = $fileArr['filename'];
         $file->original_filename = $data['file']->getClientOriginalName();
         $file->extension = $data['file']->getClientOriginalExtension();
@@ -40,6 +47,31 @@ class FileService
         $file->save();
 
         return $file;
+    }
+
+    public function compressAndUpload($file, $folder, $filename)
+    {
+        $filename = explode(".", $filename)[0];
+        // dd($filename);
+        $manager = ImageManager::imagick();
+
+        // Load the image from disk
+        $image = $manager->read($file);
+
+        // Compress the image (e.g., to 70% quality)
+        $compressed = $image->toWebp(60); // Or 'jpg', 'png', etc.
+
+        $filenameWithExt = $filename . '.webp';
+
+        // Temp file path
+        $tempPath = sys_get_temp_dir() . '/' . $filenameWithExt;
+
+        // Save encoded image to temp file
+        file_put_contents($tempPath, $compressed);
+
+        $res = $this->upload($tempPath, $folder."/compressed", $filenameWithExt);
+
+        return $res['url'];
     }
 
     public function delete($file)

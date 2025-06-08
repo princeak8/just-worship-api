@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->id();
             $table->string("url");
+            $table->string("compressed_url");
             $table->enum('file_type', EnumClass::fileTypes());
             $table->string('mime_type');
             $table->string('filename');

@@ -16,7 +16,7 @@ class FileResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "url" => url($this->url),
+            "url" => url($this->compressed_url),
             "mimeType" => $this->mime_type,
             "filename" => $this->filename,
             "extension" => $this->extension,
