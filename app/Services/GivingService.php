@@ -30,4 +30,11 @@ class GivingService
 
         return $account;
     }
+
+    public function getOptionGivingAccount($optionId, $accountId, $type)
+    {
+        if($type=='bank') return GivingAccount::where("giving_option_id", $optionId)->where("bank_account_id", $accountId)->first();
+        if($type=='online') return GivingAccount::where("giving_option_id", $optionId)->where("online_account_id", $accountId)->first();
+        return null;
+    }
 }

@@ -28,6 +28,13 @@ class GivingController extends Controller
     {
         $data = $request->validated();
 
+        $givingAccount = (isset($data['bankAccountId'])) ? 
+                            $this->givingService->getOptionGivingAccount($data['givingOptionId'], $data['bankAccountId'], 'bank')
+                            :
+                            $this->givingService->getOptionGivingAccount($data['givingOptionId'], $data['onlineAccountId'], 'online');
+
+        if($givingAccount) return Utilities::error402("This Giving Option has already been linked to this account");
+        
         $givingAccount = $this->givingService->saveGivingAccount($data);
 
         return Utilities::ok(new GivingAccountResource($givingAccount));
