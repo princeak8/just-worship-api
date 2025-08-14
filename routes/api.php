@@ -27,6 +27,7 @@ use App\Http\Controllers\StoryController;
 use App\Http\Controllers\CenterController;
 use App\Http\Controllers\VolunteerController;
 use App\Http\Controllers\VolunteeringTeamController;
+use App\Http\Controllers\GivingPartnerController;
 
 use App\Http\Controllers\UtilityController;
 
@@ -125,6 +126,10 @@ Route::group(["prefix" => "volunteering_teams"], function() {
 Route::group(["prefix" => "volunteers"], function() {
     Route::get("", [VolunteerController::class, "volunteers"]);
     Route::get("/{volunteerId}", [VolunteerController::class, "getVolunteer"]);
+});
+
+Route::group(["prefix" => "giving_partners"], function() {
+    Route::post("", [GivingPartnerController::class, "store"]);
 });
 
 Route::post("/subscribe", [SubscriberController::class, "subscribe"]);
@@ -238,6 +243,14 @@ Route::middleware(UserAuth::class)->group(function () {
         Route::post("", [VolunteerController::class, "save"]);
         Route::post("/{volunteerId}", [VolunteerController::class, "update"]);
         Route::delete("/{volunteerId}", [VolunteerController::class, "delete"]);
+    });
+
+    Route::group(["prefix" => "giving_partners"], function() {
+        Route::get("", [GivingPartnerController::class, "index"]);
+        Route::get("/statistics", [GivingPartnerController::class, "statistics"]);
+        Route::get("/{givingPartner}", [GivingPartnerController::class, "show"]);
+        Route::put("/{givingPartner}", [GivingPartnerController::class, "update"]);
+        Route::delete("/{givingPartner}", [GivingPartnerController::class, "destroy"]);
     });
 
     Route::get("/subscribers", [SubscriberController::class, "subscribers"]);

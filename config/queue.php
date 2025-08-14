@@ -107,6 +107,11 @@ return [
         'driver' => env('QUEUE_FAILED_DRIVER', 'database-uuids'),
         'database' => env('DB_CONNECTION', 'sqlite'),
         'table' => 'failed_jobs',
+        'retry_after' => 90, // Retry failed jobs after 90 seconds
+        'max_tries' => 3,    // Maximum retry attempts
     ],
+
+    'retry_after' => 90, // Retry failed jobs after 90 seconds
+    'max_tries' => 3,    // Maximum retry attempts
 
 ];

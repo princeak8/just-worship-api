@@ -15,4 +15,9 @@ class Country extends Model
         'name',
         'code',
     ];
+
+    public function givingPartners()
+    {
+        return $this->hasMany(GivingPartner::class, 'country_code', 'code');
+    }
 }

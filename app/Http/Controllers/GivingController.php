@@ -50,7 +50,6 @@ class GivingController extends Controller
     public function givingOptions()
     {
         $options = $this->givingService->options();
-
         return Utilities::ok(GivingOptionResource::collection($options));
     }
 

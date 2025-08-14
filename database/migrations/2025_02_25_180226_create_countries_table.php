@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->string("code");
+            $table->string("phone_code");
             $table->timestamps();
         });
         Artisan::call('db:seed', array('--class' => 'Countries'));

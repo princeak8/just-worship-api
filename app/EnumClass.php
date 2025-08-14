@@ -4,6 +4,8 @@ namespace App;
 
 use App\Enums\FileType;
 use App\Enums\Role;
+use App\Enums\GivingRecurrentType;
+use App\Enums\Currency;
 
 class EnumClass
 {
@@ -26,6 +28,24 @@ class EnumClass
         return [
             Role::ADMIN->value,
             Role::SUPER_ADMIN->value
+        ];
+    }
+
+    public static function givingRecurrentTypes()
+    {
+        return [
+            GivingRecurrentType::MONTHLY->value,
+            GivingRecurrentType::YEARLY->value
+        ];
+    }
+
+    public static function currencies()
+    {
+        return [
+            Currency::DOLLAR->value,
+            Currency::EURO->value,
+            Currency::NAIRA->value,
+            Currency::POUNDS->value
         ];
     }
 

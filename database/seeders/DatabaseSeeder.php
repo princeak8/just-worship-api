@@ -9,6 +9,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\GivingModes;
 use Database\Seeders\GivingOptions;
 use Database\Seeders\Users;
+use Database\Seeders\Countries;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
             new GivingModes,
             new GivingOptions,
             new Users,
+            new Countries
         ];
 
         foreach($seeders as $seeder) $seeder->run();
