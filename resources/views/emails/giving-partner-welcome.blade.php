@@ -132,13 +132,27 @@
         <div class="payment-accounts">
             <h3>Bank Transfer Details:</h3>
 
-            @foreach ($bankAccounts as $bankAccount)
+            @foreach($bankAccounts as $bankAccount)
                 <div class="account">
+                    @if($bankAccount->type == "local")
+                        <h2>Nigerian Bank Account</h2>
+                    @else
+                        <h2>International Account</h2>
+                    @endif
                     <!-- <h4>USD Account (International Transfers)</h4> -->
-                    <p><strong>Bank Name:</strong> {{ $bankAccount->bank }}</p>
                     <p><strong>Account Name:</strong> {{ $bankAccount->name }}</p>
-                    <p><strong>Account Number:</strong> {{ $bankAccount->number }}</p>
-                    <p><strong>Currency:</strong> {{ $bankAccount->currency }}</p>
+                    @if($bankAccount->type == "local")
+                        <p><strong>Bank Name:</strong> {{ $bankAccount->bank->name }}</p>
+                    @else
+                        <p><strong>SWIFT/BIC:</strong> {{ $bankAccount->swift_bic }}</p>
+                    @endif
+                    
+                    <p><strong>@if($bankAccount->type == "local") Account Number @else IBAN @endif:</strong> 
+                        {{ $bankAccount->number }}
+                    </p>
+                    @if($bankAccount->currency)
+                        <p><strong>Currency:</strong> {{ $bankAccount->currency }}</p>
+                    @endif
                 </div>
             @endforeach
             
@@ -162,8 +176,15 @@
             <div class="online-payments">
                 <h3>Online Payment Options:</h3>
                 <ul>
-                    @foreach ($onlineAccounts as $onlineAccount)
-                        <li><strong>{{ $onlineAccount->name }}:</strong> <a href="{{ $onlineAccount->url }}" >{{ $onlineAccount->url }}</a></li>
+                    @foreach($onlineAccounts as $onlineAccount)
+                        <!-- <li><strong>{{ $onlineAccount->name }}:</strong> <a href="{{ $onlineAccount->url }}" >{{ $onlineAccount->url }}</a></li> -->
+                        <div class="account">
+                            <h2>{{ $onlineAccount->name }}</h2>
+
+                            <p><strong>URL:</strong> {{ $onlineAccount->url }}</p>
+                            <!-- <img src="data:image/png;base64,{{ $onlineAccount->qrCodeBase64 }}" alt="QR Code" />
+                            <img src="{{ $onlineAccount->qrCodePhoto->url }}" :alt="QrCode Photo" class="w-full h-96 object-cover"> -->
+                        </div>
                     @endforeach
                     <!-- <li><strong>PayPal:</strong> paypal@justworshipinternational.com</li> -->
                     <!-- <li><strong>Stripe:</strong> <a href="https://pay.justworshipinternational.com">pay.justworshipinternational.com</a></li> -->

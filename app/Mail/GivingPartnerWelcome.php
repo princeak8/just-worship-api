@@ -8,10 +8,13 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 use App\Models\GivingPartner;
 use App\Models\BankAccount;
 use App\Models\OnlineAccount;
+
+use App\Utilities;
 
 class GivingPartnerWelcome extends Mailable implements ShouldQueue
 {
@@ -44,6 +47,19 @@ class GivingPartnerWelcome extends Mailable implements ShouldQueue
     {
         $bankAccounts = BankAccount::all();
         $onlineAccounts = OnlineAccount::all();
+
+        if($onlineAccounts->count() > 0) {
+            foreach($onlineAccounts as $account) {
+                $account->qrCodePhoto;
+                // Generate QR code as PNG binary
+                $qrCode = QrCode::format('png')->size(200)->generate($account->url);
+
+                // Encode to base64 so it can be embedded inline in email HTML
+                $account->qrCodeBase64 = base64_encode($qrCode);
+                Utilities::logStuff(base64_encode($qrCode));
+            }
+        }
+        Utilities::logStuff($onlineAccounts);
 
         return new Content(
             view: 'emails.giving-partner-welcome',
