@@ -5,6 +5,10 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\BaseRequest;
 
+use Illuminate\Validation\Rule;
+
+use App\EnumClass;
+
 class UpdateBankAccount extends BaseRequest
 {
     /**
@@ -23,11 +27,13 @@ class UpdateBankAccount extends BaseRequest
     public function rules(): array
     {
         return [
+            "type" => ["nullable", Rule::in(EnumClass::bankAccountTypes())],
             "countryId" => "nullable|integer|exists:countries,id",
             "currency" => "nullable|string",
-            "bankId" => "required|integer|exists:banks,id",
+            "bankId" => "nullable|exists:banks,id",
             "name" => "nullable|string",
-            "number" => "nullable|string"
+            "number" => "nullable|string",
+            "swift_bic" => "nullable|string"
         ];
     }
 }

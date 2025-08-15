@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Enums\BankAccountType;
+
 return new class extends Migration
 {
     /**
@@ -13,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('bank_accounts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("country_id");
-            $table->string("currency")->default("naira");
-            $table->foreignId("bank_id");
+            $table->string("type")->default(BankAccountType::LOCAL->value);
+            $table->foreignId("country_id")->nullable();
+            $table->string("currency")->nullable();
+            $table->foreignId("bank_id")->nullable();
             $table->string("name");
             $table->string("number");
+            $table->string("swift_bic")->nullable();
             $table->timestamps();
         });
     }

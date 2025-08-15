@@ -9,11 +9,13 @@ class BankAccountService
     public function save($data)
     {
         $account = new BankAccount;
+        if(isset($data['type'])) $account->type = $data['type'];
         if(isset($data['currency'])) $account->currency = $data['currency'];
-        $account->country_id = $data['countryId'];
-        $account->bank_id = $data['bankId'];
+        if(isset($data['countryId'])) $account->country_id = $data['countryId'];
+        if(isset($data['bankId'])) $account->bank_id = $data['bankId'];
         $account->name = $data['name'];
         $account->number = $data['number'];
+        if(isset($data['swift_bic'])) $account->swift_bic = $data['swift_bic'];
         $account->save();
 
         return $account;

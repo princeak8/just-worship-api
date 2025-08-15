@@ -11,7 +11,7 @@ class BankAccount extends Model
         return $this->belongsTo(Country::class);
     }
 
-    public function bankObj()
+    public function bank()
     {
         return $this->belongsTo(Bank::class, "bank_id", "id");
     }

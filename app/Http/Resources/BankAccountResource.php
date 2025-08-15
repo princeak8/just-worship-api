@@ -19,10 +19,12 @@ class BankAccountResource extends JsonResource
     {
         return [
             "id" => $this->id,
+            "type" => $this->type,
             "currency" => $this->currency,
-            "bank" => new BankResource($this->bankObj),
+            "bank" => new BankResource($this->bank),
             "name" => $this->name,
             "number" => $this->number,
+            "swift_bic" => $this->swift_bic,
             "country" => new CountryResource($this->country)
         ];
     }

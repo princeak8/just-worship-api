@@ -6,6 +6,7 @@ use App\Enums\FileType;
 use App\Enums\Role;
 use App\Enums\GivingRecurrentType;
 use App\Enums\Currency;
+use App\Enums\BankAccountType;
 
 class EnumClass
 {
@@ -46,6 +47,14 @@ class EnumClass
             Currency::EURO->value,
             Currency::NAIRA->value,
             Currency::POUNDS->value
+        ];
+    }
+
+    public static function bankAccountTypes()
+    {
+        return [
+            BankAccountType::LOCAL->value,
+            BankAccountType::INTERNATIONAL->value
         ];
     }
 
