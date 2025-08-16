@@ -51,7 +51,7 @@ class SaveGivingPartner extends BaseRequest
                 Rule::in(EnumClass::givingRecurrentTypes()),
                 Rule::requiredIf($this->boolean('recurrent'))
             ],
-            'amount' => 'required|numeric|min:0.01|max:999999.99',
+            'amount' => 'required|numeric|min:0.01',
             "currency" => ["required", "string", Rule::in(EnumClass::currencies())],
             'prayerPoint' => 'nullable|string',
         ];
