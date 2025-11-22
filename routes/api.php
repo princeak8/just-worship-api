@@ -28,6 +28,7 @@ use App\Http\Controllers\CenterController;
 use App\Http\Controllers\VolunteerController;
 use App\Http\Controllers\VolunteeringTeamController;
 use App\Http\Controllers\GivingPartnerController;
+use App\Http\Controllers\DiscipleshipController;
 
 use App\Http\Controllers\UtilityController;
 
@@ -134,6 +135,12 @@ Route::group(["prefix" => "giving_partners"], function() {
 
 Route::post("/subscribe", [SubscriberController::class, "subscribe"]);
 Route::post("/members/register", [MembershipController::class, "save"]);
+
+//Discipleship Class
+Route::group(["prefix" => "discipleship"], function() {
+    Route::get("/current", [DiscipleshipController::class, "currentDiscipleship"]);
+    Route::post("/join/{id}", [DiscipleshipController::class, "join"]);
+});
 
 
 Route::get("/countries", [UtilityController::class, "countries"]);
@@ -251,6 +258,17 @@ Route::middleware(UserAuth::class)->group(function () {
         Route::get("/{givingPartner}", [GivingPartnerController::class, "show"]);
         Route::put("/{givingPartner}", [GivingPartnerController::class, "update"]);
         Route::delete("/{givingPartner}", [GivingPartnerController::class, "destroy"]);
+    });
+
+    //Discipleship Class
+    Route::group(["prefix" => "discipleships"], function() {
+        Route::get("", [DiscipleshipController::class, "discipleships"]);
+        Route::get("/{id}", [DiscipleshipController::class, "discipleship"]);
+        Route::post("", [DiscipleshipController::class, "create"]);
+        Route::post("/{id}", [DiscipleshipController::class, "update"]);
+        Route::post("/open/{id}", [DiscipleshipController::class, "open"]);
+        Route::post("/close/{id}", [DiscipleshipController::class, "close"]);
+
     });
 
     Route::get("/subscribers", [SubscriberController::class, "subscribers"]);

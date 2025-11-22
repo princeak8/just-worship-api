@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\BaseRequest;
 
-class CreateSlide extends BaseRequest
+class JoinDiscipleship extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +23,12 @@ class CreateSlide extends BaseRequest
     public function rules(): array
     {
         return [
-            "title" => "nullable|string",
-            "photo" => "required|file|mimes:jpg,jpeg,png,gif,webp,mp4|max:20024",
-            "message" => "nullable|string",
-            "buttonText" => "nullable|string",
-            "buttonUrl" => "nullable|string"
+            "firstname" => "required|string",
+            "surname" => "required|string",
+            "email" => "required|email",
+            "phoneNumber" => "required|string",
+            "countryId" => "nullable|exists:countries,id",
+            "city" => "nullable|string"
         ];
     }
 }
