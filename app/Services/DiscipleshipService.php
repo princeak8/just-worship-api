@@ -73,15 +73,25 @@ class DiscipleshipService
 
     public function open($discipleship)
     {
-        $discipleship->open = true;
+        $this->closeAll();
+
+        $discipleship->open = 1;
         $discipleship->update();
 
         return $discipleship;
     }
 
+    public function closeAll()
+    {
+        $discipleships = $this->getDiscipleships();
+        if($discipleships->count() > 0) {
+            foreach($discipleships as $discipleship) $this->close($discipleship);
+        }
+    }
+
     public function close($discipleship)
     {
-        $discipleship->open = false;
+        $discipleship->open = 0;
         $discipleship->update();
 
         return $discipleship;

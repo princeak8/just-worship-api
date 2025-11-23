@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests\CreateDiscipleship;
 use App\Http\Requests\UpdateDiscipleship;
@@ -91,10 +92,15 @@ class DiscipleshipController extends Controller
             $discipleship = $this->discipleshipService->getDiscipleship($discipleshipId);
             if(!$discipleship) return Utilities::error402("Discipleship not found");
 
+            DB::beginTransaction();
+
             $discipleship = $this->discipleshipService->open($discipleship);
+
+            DB::commit();
 
             return Utilities::ok(new DiscipleshipResource($discipleship));
         }catch(\Exception $e){
+            DB::rollBack();
             return Utilities::error($e, 'An error occurred while trying to process the request, Please try again later or contact support');
         }
     }

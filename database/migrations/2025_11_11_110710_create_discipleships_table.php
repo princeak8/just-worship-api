@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('discipleships', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->string("name")->default("Discipleship with Pastor Chidi Ani");
             $table->tinyInteger("month");
@@ -21,7 +22,7 @@ return new class extends Migration
             $table->string("venue")->nullable();
             $table->boolean("online")->default(false);
             $table->string("link")->nullable();
-            $table->boolean("open")->default(true);
+            $table->boolean("open")->default(false);
             $table->date("deadline")->nullable();
             $table->timestamps();
         });

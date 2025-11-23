@@ -32,9 +32,13 @@ use App\Http\Controllers\DiscipleshipController;
 
 use App\Http\Controllers\UtilityController;
 
+use App\Http\Controllers\VideoController;
+
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
 // })->middleware('auth:sanctum');
+
+Route::post('/video/upload-queue', [VideoController::class, 'uploadWithQueue']);
 
 Route::group(['prefix' => '/auth'], function () {
     Route::post("/login", [AuthController::class, "login"]);
