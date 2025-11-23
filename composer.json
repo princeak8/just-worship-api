@@ -14,6 +14,7 @@
         "pbmedia/laravel-ffmpeg": "^8.7",
         "php-open-source-saver/jwt-auth": "^2.8",
         "pion/laravel-chunk-upload": "^1.5",
+        "rakutentech/laravel-request-docs": "^2.43",
         "simplesoftwareio/simple-qrcode": "^4.2"
     },
     "require-dev": {

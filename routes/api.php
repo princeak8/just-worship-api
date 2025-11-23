@@ -85,7 +85,7 @@ Route::group(["prefix" => "events"], function() {
 Route::group(["prefix" => "live"], function() {
     Route::get("", [LiveController::class, "lives"]);
     Route::get("/{id}", [LiveController::class, "live"]);
-    Route::post("/book", [LiveController::class, "book"]);
+    // Route::post("/book", [LiveController::class, "book"]);
 });
 
 Route::group(["prefix" => "store"], function() {
@@ -251,7 +251,7 @@ Route::middleware(UserAuth::class)->group(function () {
     });
     
     Route::group(["prefix" => "volunteers"], function() {
-        Route::post("", [VolunteerController::class, "save"]);
+        // Route::post("", [VolunteerController::class, "save"]);
         Route::post("/{volunteerId}", [VolunteerController::class, "update"]);
         Route::delete("/{volunteerId}", [VolunteerController::class, "delete"]);
     });
