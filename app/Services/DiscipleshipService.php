@@ -63,7 +63,7 @@ class DiscipleshipService
 
     public function getCurrentDiscipleship($with=[])
     {
-        return Discipleship::with($with)->orderBy("year", "DESC")->orderBy("month", "DESC")->first();
+        return Discipleship::with($with)->where("open", 1)->orderBy("year", "DESC")->orderBy("month", "DESC")->first();
     }
 
     public function getDiscipleship($discipleshipId, $with=[])
