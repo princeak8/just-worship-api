@@ -28,6 +28,12 @@ class Users extends Seeder
                 "email" => "super-admin@gmail.com",
                 "role" => Role::SUPER_ADMIN->value,
                 "password" => "admin123"
+            ],
+            [
+                "name" => "Chidi Ani",
+                "email" => "chidi@gmail.com",
+                "role" => Role::ADMIN->value,
+                "password" => "chidi123"
             ]
         ];
 
