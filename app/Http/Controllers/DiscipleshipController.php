@@ -29,14 +29,14 @@ class DiscipleshipController extends Controller
 
     public function discipleships()
     {
-        $discipleships = $this->discipleshipService->getDiscipleships();
+        $discipleships = $this->discipleshipService->getDiscipleships(['members']);
 
         return DiscipleshipResource::collection($discipleships);
     }
 
     public function currentDiscipleship()
     {
-        $discipleship = $this->discipleshipService->getCurrentDiscipleship();
+        $discipleship = $this->discipleshipService->getCurrentDiscipleship(['members']);
         if(!$discipleship) return Utilities::ok([]);
 
         return Utilities::ok(new DiscipleshipResource($discipleship));
