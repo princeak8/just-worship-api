@@ -14,6 +14,7 @@ class DiscipleshipService
         $discipleship->year = $data['year'];
         $discipleship->month = $data['month'];
         if(isset($data['countryId'])) $discipleship->country_id = $data['countryId'];
+        if(isset($data['photoId'])) $discipleship->photo_id = $data['photoId'];
         if(isset($data['venue'])) $discipleship->venue = $data['venue'];
         if(isset($data['online'])) $discipleship->online = $data['online'];
         if(isset($data['link'])) $discipleship->link = $data['link'];
@@ -31,6 +32,7 @@ class DiscipleshipService
         if(isset($data['month'])) $discipleship->month = $data['month'];
         if(isset($data['year'])) $discipleship->year = $data['year'];
         if(isset($data['countryId'])) $discipleship->country_id = $data['countryId'];
+        if(isset($data['photoId'])) $discipleship->photo_id = $data['photoId'];
         if(isset($data['venue'])) $discipleship->venue = $data['venue'];
         if(isset($data['online'])) $discipleship->online = $data['online'];
         if(isset($data['link'])) $discipleship->link = $data['link'];

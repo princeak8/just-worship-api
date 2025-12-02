@@ -13,6 +13,7 @@ use App\Http\Resources\DiscipleshipResource;
 
 use App\Services\DiscipleshipService;
 use App\Services\DiscipleshipMemberService;
+use App\Services\FileService;
 
 use App\Utilities;
 
@@ -20,11 +21,15 @@ class DiscipleshipController extends Controller
 {
     protected $discipleshipService;
     protected $discipleshipMemberService;
+    private $fileService;
 
-    public function __construct(DiscipleshipService $discipleshipService, DiscipleshipMemberService $discipleshipMemberService)
+    public function __construct(DiscipleshipService $discipleshipService, DiscipleshipMemberService $discipleshipMemberService,
+                                FileService $fileService
+                                )
     {
         $this->discipleshipService = $discipleshipService;
         $this->discipleshipMemberService = $discipleshipMemberService;
+        $this->fileService = $fileService;
     }
 
     public function discipleships()
@@ -57,6 +62,15 @@ class DiscipleshipController extends Controller
         try{
             $data = $request->validated();
 
+            if($request->hasFile('photo')) {
+                $fileData = [
+                    "file" => $request->file('photo'),
+                    "fileType" => 'image'
+                ];
+                $file = $this->fileService->save($fileData, 'discipleships');
+                $data['photoId'] = $file->id;
+            }
+
             $discipleship = $this->discipleshipService->save($data);
             $discipleship = $this->discipleshipService->getDiscipleship($discipleship->id);
 
@@ -76,7 +90,21 @@ class DiscipleshipController extends Controller
             
             $data = $request->validated();
 
+            $oldPhoto = null;
+        
+            if($request->hasFile('photo')) {
+                $oldPhoto = $discipleship->photo;
+                $fileData = [
+                    "file" => $request->file('photo'),
+                    "fileType" => 'image'
+                ];
+                $file = $this->fileService->save($fileData, 'discipleships');
+                $data['photoId'] = $file->id;
+            }
+
             $discipleship = $this->discipleshipService->update($data, $discipleship);
+
+            if($oldPhoto) $oldPhoto->delete();
 
             return Utilities::ok(new DiscipleshipResource($discipleship));
         }catch(\Exception $e){
