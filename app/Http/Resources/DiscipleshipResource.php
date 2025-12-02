@@ -29,7 +29,7 @@ class DiscipleshipResource extends JsonResource
             "venue" => $this->venue,
             "online" => ($this->online == 1) ? true : false,
             "link" => $this->link,
-            "photo" => new FileResource($this->whenLoaded("photo")),
+            "photo" => new FileResource($this->photo),
             "country" => new CountryResource($this->country),
             "members" => DiscipleshipMemberResource::collection($this->whenLoaded('members'))
         ];
